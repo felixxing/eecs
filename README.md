@@ -10,7 +10,7 @@ Thisfore, this library does not do any data hiding and it's your responsibilty t
 ## Purpose
 This is the ECS system for my own custom OpenGl engine. and it's inspired by [entt](https://github.com/skypjack/entt).
 
-It lots of hash map to maintain almost constant time operation.
+It use lots of hash map to maintain almost constant time operation.
 
 ## Doc
 
