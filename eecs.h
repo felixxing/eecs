@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
+
 #define nullptr NULL
 
 typedef unsigned long long EID;
@@ -78,9 +80,9 @@ EID add_entity(Ecs* registry);
 
 /**
  * @brief Change the name of an entity
- * 
- * @param registry 
- * @param entity 
+ *
+ * @param registry
+ * @param entity
  */
 void change_entity_name(Ecs* registry, EID entity, const char* name);
 
@@ -205,6 +207,8 @@ struct Ecs
     Master_Map comp_map;
 
     De_Func_Map defunc_map;
+
+    unsigned long long entity_order;
 };
 
 struct Entity_View

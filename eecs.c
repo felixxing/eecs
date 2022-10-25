@@ -11,35 +11,33 @@ Ecs* create_registry()
     sh_new_arena(tmp_ecs->comp_map);
     sh_new_arena(tmp_ecs->defunc_map);
 
+    tmp_ecs->entity_order = 1;
     return tmp_ecs;
 }
 
 EID add_entity(Ecs* registry)
 {
-    static unsigned long long entity_order = 1;
-
     Entity* tmp_entity = malloc(sizeof(Entity));
     memset(tmp_entity, 0x0, sizeof(Entity));
-    tmp_entity->id = entity_order;
 
-    sprintf(tmp_entity->name, "EID_%lld", entity_order);
+    hmput(registry->entity_map, registry->entity_order, tmp_entity);
+    tmp_entity->id = registry->entity_order;
+    sprintf(tmp_entity->name, "EID_%lld", registry->entity_order);
+    registry->entity_order++;
 
-    hmput(registry->entity_map, entity_order, tmp_entity);
-    entity_order++;
-
-    return hmgetp_null(registry->entity_map, entity_order - 1)->value->id;
+    return tmp_entity->id;
 }
 
 void change_entity_name(Ecs* registry, EID entity, const char* name)
 {
     Entity* tmp = get_entity(registry, entity);
-
     sprintf(tmp->name, "%s", name);
 }
 
 Entity* get_entity(Ecs* registry, EID id)
 {
     Entity_Map result = hmgetp_null(registry->entity_map, id);
+
     if (result == nullptr)
     {
         return nullptr;
