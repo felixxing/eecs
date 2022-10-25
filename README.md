@@ -73,3 +73,6 @@ char* patterns[] = {"Transform", "Mesh"};
 Entity_View* view = get_entity_view(registry, patterns, 2);
 ```
 This will return a list of EID that has both *Transform* and *Mesh* component. Use ```get_entity_comp``` to get the pointer to conponent.
+
+## third party
+stb_ds.h -- public domain
