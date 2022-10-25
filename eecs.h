@@ -1,6 +1,7 @@
 #ifndef ECS_H
 #define ECS_H
 
+#include <stdio.h>
 #include <stdlib.h>
 #define nullptr NULL
 
@@ -76,6 +77,14 @@ void free_entity_view(Entity_View* view);
 EID add_entity(Ecs* registry);
 
 /**
+ * @brief Change the name of an entity
+ * 
+ * @param registry 
+ * @param entity 
+ */
+void change_entity_name(Ecs* registry, EID entity, const char* name);
+
+/**
  * @brief Get the entity pointer
  *
  * @param registry the registry
@@ -144,6 +153,7 @@ unsigned long long get_comp_size(Ecs* registry, char* name);
 // struct definitions
 struct Entity
 {
+    char name[512];
     unsigned long long id;
     char** comp_arr;
 

@@ -22,10 +22,19 @@ EID add_entity(Ecs* registry)
     memset(tmp_entity, 0x0, sizeof(Entity));
     tmp_entity->id = entity_order;
 
+    sprintf(tmp_entity->name, "EID_%lld", entity_order);
+
     hmput(registry->entity_map, entity_order, tmp_entity);
     entity_order++;
 
     return hmgetp_null(registry->entity_map, entity_order - 1)->value->id;
+}
+
+void change_entity_name(Ecs* registry, EID entity, const char* name)
+{
+    Entity* tmp = get_entity(registry, entity);
+
+    sprintf(tmp->name, "%s", name);
 }
 
 Entity* get_entity(Ecs* registry, EID id)
