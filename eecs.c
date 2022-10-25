@@ -59,6 +59,16 @@ void remove_entity(Ecs* registry, EID entity)
     free(tmp_ent);
 }
 
+unsigned long long get_entity_comp_size(Ecs* registry, EID entity)
+{
+    Entity* tmp = get_entity(registry, entity);
+    if (tmp->comp_arr == nullptr)
+    {
+        return 0;
+    }
+    return arrlenu(tmp->comp_arr);
+}
+
 void* attach_comp(Ecs* registry, EID entity, char* name, size_t comp_size)
 {
     if (hmgetp_null(registry->entity_map, entity) == nullptr)

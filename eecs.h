@@ -92,6 +92,8 @@ Entity* get_entity(Ecs* registry, EID id);
  */
 void remove_entity(Ecs* registry, EID entity);
 
+unsigned long long get_entity_comp_size(Ecs* registry, EID entity);
+
 /**
  * @brief attatch a component to given entity
  *
