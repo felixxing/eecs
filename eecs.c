@@ -28,7 +28,7 @@ EID add_entity(Ecs* registry)
     return tmp_entity->id;
 }
 
-void change_entity_name(Ecs* registry, EID entity, const char* name)
+void change_entity_name(Ecs* registry, EID entity, char* name)
 {
     Entity* tmp = get_entity(registry, entity);
     sprintf(tmp->name, "%s", name);

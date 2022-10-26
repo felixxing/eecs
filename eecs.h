@@ -83,7 +83,7 @@ EID add_entity(Ecs* registry);
  * @param registry
  * @param entity
  */
-void change_entity_name(Ecs* registry, EID entity, const char* name);
+void change_entity_name(Ecs* registry, EID entity, char* name);
 
 /**
  * @brief Get the entity pointer
